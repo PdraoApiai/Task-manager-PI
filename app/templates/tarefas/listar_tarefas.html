@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block styles %}
+    <style>
+        .card {
+            margin-bottom: 20px;
+            border: 1px solid #dddfe2;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            border-radius: 8px;
+        }
+
+        .card-header {
+            padding: 10px;
+            border-bottom: 1px solid #dddfe2;
+            background-color: #f6f7f8;
+            color: #1c1e21;
+            font-size: 16px;
+        }
+
+        .card-body {
+            padding: 10px;
+            color: #1c1e21;
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            margin-bottom: 10px;
+            color: #606770;
+        }
+
+        .card-footer {
+            padding: 10px;
+            border-top: 1px solid #dddfe2;
+            background-color: #f6f7f8;
+            color: #606770;
+            font-size: 14px;
+        }
+
+        .btn {
+            margin-right: 5px;
+            color: #1c1e21;
+            font-size: 14px;
+            padding: 5px 10px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #4267b2;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .btn-primary:hover {
+            background-color: #365899;
+        }
+    </style>
+{% endblock styles %}
+
+{% block conteudo %}
+    <h1>Tarefas Listadas</h1>
+    {% for tarefa in tarefas %}
+        <div class="card">
+            <div class="card-header">
+                <h5>Prioridade: {{ tarefa.get_prioridade_display }}</h5>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ tarefa.titulo }}</h5>
+                <p class="card-body">{{ tarefa.descricao }}</p>
+                <a href="{% url 'editar_tarefa' tarefa.id %}" class="btn" title="Editar Tarefa">✍🏽</a>
+                <a href="{% url 'remover_tarefa' tarefa.id %}" class="btn" title="Remover Tarefa">🗑️</a>
+            </div>
+            <div class="card-footer">Expira: {{ tarefa.data_expiracao }}</div>
+        </div>
+    {% endfor %}
+
+    <a href="{% url 'cadastrar_tarefa' %}">
+        <button class="btn btn-primary">Nova Tarefa</button>
+    </a>
+{% endblock conteudo %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load meus_filtros %}
+
+{% block styles %}
+    <style>
+        .alert {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #138496;
+        }
+
+        .btn-dark {
+            background-color: #343a40;
+            border-color: #343a40;
+        }
+
+        .btn-dark:hover {
+            background-color: #23272b;
+            border-color: #23272b;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+{% endblock styles %}
+
+{% block conteudo %}
+    <form method="post">
+        {% csrf_token %}
+        {% for message in messages %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            {{ form_user.username.errors }}
+            <label>Usuário:</label>
+            {{ form_login.username | addClass:'form-control' }}
+        </div>
+
+        <div class="form-group">
+            {{ form_user.password1.errors }}
+            <label>Senha:</label>
+            {{ form_login.password | addClass:'form-control' }}
+        </div>
+
+        <div class="form-group">
+            <div class="btn-group">
+                <button type="submit" class="btn btn-info">Login</button>
+                <a href="{% url 'cadastrar_usuario' %}" class="btn btn-dark">Cadastre-se</a>
+            </div>
+        </div>
+    </form>
+{% endblock conteudo %}
