@@ -5,7 +5,6 @@ from ..entidades.tarefa import Tarefa
 from ..services import tarefa_service
 from ..forms import TarefaForm
 
-# Create your views here.
 @login_required()
 def listar_tarefas(request):
     tarefas = tarefa_service.listar_tarefas(request.user)
