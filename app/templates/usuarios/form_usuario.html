@@ -1,30 +1,31 @@
 {% extends 'base.html' %}
 {% load meus_filtros %}
+
 {% block conteudo %}
 
-<form method="post">
+  <form method="post">
     {% csrf_token %}
     <div class="form-group">
-        {{form_user.username.erros}}
-        <label>Nome do Usuario: </label>
-        {{form_user.username | addClass:'form-control'}}
-    </div>
-
-    <div class="form-group">
-        {{form_user.password1.erros}}
-        <label>Digite sua senha: </label>
-        {{form_user.password1 | addClass:'form-control'}}
-    </div>
-
-    <div class="form-group">
-        {{form_user.password2.erros}}
-        <label>Digite novamente a senha: </label>
-        {{form_user.password2 | addClass:'form-control'}}
-    </div>
-
-    <div class="form-group">
+        <label for="{{ form_user.username.id_for_label }}">Nome do Usuário:</label>
+        {{ form_user.username.errors }}
+        {{ form_user.username | addClass:'form-control' }}
+      </div>
+      
+      <div class="form-group">
+        <label for="{{ form_user.password1.id_for_label }}">Digite sua senha:</label>
+        {{ form_user.password1.errors }}
+        {{ form_user.password1 | addClass:'form-control' }}
+      </div>
+      
+      <div class="form-group">
+        <label for="{{ form_user.password2.id_for_label }}">Digite novamente a senha:</label>
+        {{ form_user.password2.errors }}
+        {{ form_user.password2 | addClass:'form-control' }}
+      </div>
+      
+      <div class="form-group">
         <button type="submit" class="btn btn-primary">Cadastrar</button>
-    </div>
-
-</form>
-{% endblock conteudo %}
+      </div>
+    </form>
+    {% endblock conteudo %}
+    ```
