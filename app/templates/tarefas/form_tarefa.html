@@ -4,6 +4,24 @@
 {% block conteudo %}
     <h1 class="text-center" style="font-weight: bold; text-transform: uppercase; font-size: 5em;">Cadastrar Tarefa</h1>
 
+    <head> 
+        <script>
+            $(document).ready(function() {
+                $(".datepicker").datepicker({
+                    dateFormat: 'dd-mm-yy',  
+                    buttonImage: "https://exemplo.com/icon-calendario.png",  
+                    buttonImageOnly: true,  
+                    buttonText: "Selecionar data", 
+                    showOtherMonths: true,  
+                    selectOtherMonths: true,  
+                    changeMonth: true,  
+                    changeYear: true,  
+                });
+            });
+        </script>
+         
+    </head>
+
     <form method="post" class="form-horizontal" role="form">
         {% csrf_token %}
         <div class="form-group">
@@ -21,8 +39,9 @@
         <div class="form-group">
             {{ form_tarefa.data_expiracao.errors }}
             <label for="{{ form_tarefa.titulo.id_for_label }}" style="font-weight: bold; text-transform: uppercase; font-size: 1.2em;">DATA DE EXPIRAÇÃO:</label>
-            {{ form_tarefa.data_expiracao | addClass:'form-control' }}
+            {{ form_tarefa.data_expiracao | addClass:'datepicker' }}
         </div>
+        
 
         <div class="form-group">
             {{ form_tarefa.prioridade.errors }}
@@ -31,7 +50,7 @@
         </div>
   
         <div class="form-group text-center">
-            <button type="submit" class="btn btn-info btn-lg">CADASTRAR</button>
+            <button type="submit" class="btn btn-info btn-lg mb-2">CADASTRAR</button>
         </div>
     </form>
 {% endblock conteudo %}
