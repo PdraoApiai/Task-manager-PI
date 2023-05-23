@@ -9,8 +9,8 @@
             <div class="card-body">
                 <h5 class="card-title">{{ tarefa.titulo }}</h5>
                 <p class="card-body">{{ tarefa.descricao }}</p>
-                <a href="{% url 'editar_tarefa' tarefa.id %}" class="btn" title="Editar Tarefa">✍🏽</a>
-                <a href="{% url 'remover_tarefa' tarefa.id %}" class="btn" title="Remover Tarefa">🗑️</a>
+                <a href="{% url 'editar_tarefa' tarefa.id %}" class="btn btn-light" title="Editar Tarefa">Editar</a>
+                <a href="{% url 'remover_tarefa' tarefa.id %}" class="btn btn-light" title="Remover Tarefa">Remover</a>
             </div>
             <div class="card-footer">Expira: {{ tarefa.data_expiracao }}</div>
         </div>
