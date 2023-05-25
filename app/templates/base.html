@@ -6,27 +6,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Gerenciador de Tarefas</title>
+    <title>{% block title%}Gerenciador de Tarefas{% endblock%}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-center">
-        <a class="navbar-brand mx-auto font-weight-bold" href="#" style="font-size: 2.0em;">Gerenciador de Tarefas</a>    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-80">
+        <a class="navbar-brand mx-auto font-weight-bold btn bg-dark" href="#" style="font-size: 2.0em;">Gerenciador de Tarefas</a>    
         <button class="navbar-toggler text-center" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>        
         <div class="collapse navbar-collapse text-center" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
+            <ul class="navbar-nav">
                 <li>
-                    <a class="nav-link" href="{% url 'listar_tarefas'%}">Listar Tarefas</a>
+                    <a class="nav-link btn btn-light bg-dark" style="font-size: 1.8em;" href="{% url 'listar_tarefas'%}">Listar Tarefas</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{% url 'logout'%}">Sair</a>
+                    <a class="nav-link btn btn-light bg-dark" style="font-size: 1.8em;" href="{% url 'logout'%}">Sair</a>
                 </li>
             </ul>
         </div>

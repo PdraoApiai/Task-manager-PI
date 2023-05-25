@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load meus_filtros %}
+{% block title%}Gerenciador - entre ou cadastra-se{% endblock%}
 
 {% block conteudo %}
     <form method="post">
@@ -11,13 +12,13 @@
         {% endfor %}
         <div class="form-group">
             {{form_user.username.erros}}
-            <label>Nome do Usuário: </label>
+            <label style="font-weight: bold; text-transform: uppercase; font-size: 1.2em;">NOME DE USUÁRIO: </label>
             {{form_login.username | addClass:'form-control'}}
         </div>
 
         <div class="form-group">
             {{form_user.password1.erros}}
-            <label>Digite sua senha: </label>
+            <label style="font-weight: bold; text-transform: uppercase; font-size: 1.2em;">DIGITE SUA SENHA: </label>
             {{form_login.password | addClass:'form-control'}}
         </div>
 
