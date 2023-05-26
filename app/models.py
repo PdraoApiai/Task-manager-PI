@@ -3,9 +3,9 @@ from django.db import models
 
 class Tarefa(models.Model):
     PRIORIDADE_CHOICES = [
-        ("A", "ALTA"),
-        ("N", "NORMAL"),
-        ("B", "BAIXA"),
+        ("A", "Alta"),
+        ("N", "Normal"),
+        ("B", "Baixa"),
     ]
 
     titulo = models.CharField(max_length=30, null=False, blank=False)

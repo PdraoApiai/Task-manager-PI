@@ -1,23 +1,114 @@
 {% extends 'base.html' %}
+
 {% block conteudo %}
-    <h1>Tarefas Listadas</h1>
+    <style>
+        /*Fundo */
+        .card {
+            background-color: #8580808c;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        /*Prioridade*/
+        .card-header {
+            background-color: #333;
+            color: #c9c7c7;
+            padding: 10px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .card-header h5 {
+            margin: 0;
+        }
+        /*Fundo do Titulo e etc*/
+        .card-body {
+            background-color: #969393;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        /*Titulo da Tarefa*/
+        .card-body .card-title {
+            font-weight: bold;
+            color: #d8d5d5;
+            padding: 10px;
+            border-radius: 5px;
+            text-transform: capitalize; 
+            font-size: 2.0em;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        /*descriçao*/
+        .card-body .elegant-text {
+            font-weight: bold;
+            text-transform: capitalize;
+            font-size: 1.2em;
+            color: #161515;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .card-body .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1em;
+            color: #050505;
+            background-color: #719fdb;
+            border: 1px groove #ccc;
+            margin-right: 10px;
+        }
+        /*expiração*/
+        .card-footer {
+            font-weight: bold;  
+            text-transform: none;
+            font-size: 1.2em;
+            background-color: #a8a4a4;
+            color: #333;
+            padding: 10px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+        }
+    </style>
+
+    <h1>Tarefas</h1>
     {% for tarefa in tarefas %}
-        <div class="card" style="margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
-            <div class="card-header" style="font-weight: bold; text-transform: uppercase; font-size: 1.2em; background-color: #a09f9f; color: #fff; padding: 10px; border-top-left-radius: 5px; border-top-right-radius: 5px;">
-                <h5 style="margin: 0;">Prioridade: {{ tarefa.get_prioridade_display }}</h5>
+        <div class="card">
+            <div class="card-header">
+                <h5>Prioridade: {{ tarefa.get_prioridade_display }}</h5>
             </div>
-            
             <div class="card-body">
-                <h5 class="card-title" style="font-weight: bold; background-color: #a8a4a4; color: #fff; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); text-transform: uppercase; font-size: 2.0em; text-align: left;">{{ tarefa.titulo }}</h5>
-                <p class="card-body elegant-text" style="font-weight: bold; text-transform: uppercase; font-size: 1.2em; background-color: #a8a4a4; color: #333; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">· {{ tarefa.descricao }}</p>
-                <a href="{% url 'editar_tarefa' tarefa.id %}" class="btn btn-light" title="Editar Tarefa" style="display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; text-transform: uppercase; font-size: 1em; color: #333; background-color: #4b84ce; border: 1px solid #ccc;">Editar</a>
-                <a href="{% url 'remover_tarefa' tarefa.id %}" class="btn btn-light" title="Remover Tarefa" style="display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; text-transform: uppercase; font-size: 1em; color: #333; background-color: #4b84ce; border: 1px solid #ccc;">Remover</a>
+                <h5 class="card-title">{{ tarefa.titulo }}</h5>
+                <p class="card-body elegant-text">· {{ tarefa.descricao }}</p>
+                <a href="{% url 'editar_tarefa' tarefa.id %}" class="btn" title="Editar Tarefa">Editar</a>
+                <a href="{% url 'remover_tarefa' tarefa.id %}" class="btn" title="Remover Tarefa">Remover</a>
             </div>  
-            <div class="card-footer" style="font-weight: bold; text-transform: uppercase; font-size: 1.2em; background-color: #a8a4a4; color: #333; padding: 10px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">Expira: {{ tarefa.data_expiracao }}</div>
+            <div class="card-footer">Expira: {{ tarefa.data_expiracao }}</div>
         </div>
     {% endfor %}
 
     <a href="{% url 'cadastrar_tarefa' %}">
-        <button class="btn btn-primary" style="display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; text-transform: uppercase; font-size: 1em; color: #fff; background-color: #007bff; border: none;">Nova Tarefa</button>
+        <button class="btn-primary">Nova Tarefa</button>
     </a>
 {% endblock conteudo %}
